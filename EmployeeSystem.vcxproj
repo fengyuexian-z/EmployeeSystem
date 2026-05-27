@@ -97,7 +97,7 @@
     <ClInclude Include="Employee.h" />
     <ClInclude Include="EmployeeDialog.h" />
     <ClInclude Include="EmployeeManager.h" />
-    <ClInclude Include="LoginDialog.h" />
+    <QtMoc Include="LoginDialog.h" />
     <ClInclude Include="MainWindow.h" />
     <ClInclude Include="Manager.h" />
     <ClInclude Include="PasswordManager.h" />

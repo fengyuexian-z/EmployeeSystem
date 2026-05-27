@@ -41,9 +41,6 @@
     <ClInclude Include="PasswordManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="LoginDialog.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ChangePasswordDialog.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -88,5 +85,10 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="LoginDialog.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
   </ItemGroup>
 </Project>
