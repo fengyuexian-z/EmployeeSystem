@@ -10,27 +10,29 @@ LoginDialog::LoginDialog(QWidget* parent) :QDialog(parent) ,attempts(0){
 	userEdit = new QLineEdit(this);
 	passEdit = new QLineEdit(this);
 	passEdit->setEchoMode(QLineEdit::Password);
-	QPushButton* loginbtn=new QPushButton("登录", this);
+	QPushButton* loginbtn = new QPushButton("登录", this);
 	msgLabel = new QLabel(this);
 	QLabel* userlabel = new QLabel("用户名：", this);
 	QLabel* passlabel = new QLabel("密码：", this);
-	msgLabel = new QLabel(this);
-	//布局
-	QHBoxLayout* userlayout = new QHBoxLayout(this);
-	userlayout->addWidget(userlabel);
-	userlayout->addWidget(userEdit);
 
-	QHBoxLayout* passlayout = new QHBoxLayout(this);
-	passlayout->addWidget(passlabel);
-	passlayout->addWidget(passEdit);
+	QGridLayout* formlayout = new QGridLayout();
+	formlayout->addWidget(userlabel, 0, 0);
+	formlayout->addWidget(userEdit, 0, 1);
+	formlayout->addWidget(passlabel, 1, 0);
+	formlayout->addWidget(passEdit, 1, 1);
+	formlayout->addWidget(loginbtn, 2, 0, 1, 2, Qt::AlignCenter); // 按钮居中
+	formlayout->setColumnStretch(1, 1);  // 输入框列可拉伸
 
-	QVBoxLayout* layout = new QVBoxLayout(this);
-	layout->addStretch();
-	layout->addLayout(userlayout);
-	layout->addLayout(passlayout);
-	layout->addWidget(loginbtn);
-	layout->addWidget(msgLabel);
-	layout->addStretch();
+	QHBoxLayout* msgLayout = new QHBoxLayout();
+	msgLayout->addStretch();
+	msgLayout->addWidget(msgLabel);
+	msgLayout->addStretch();
+
+	QVBoxLayout* outerLayout = new QVBoxLayout(this);
+	outerLayout->addStretch(1);
+	outerLayout->addLayout(formlayout, 2);
+	outerLayout->addLayout(msgLayout, 1);
+
 	//点击按钮或回车登录
 	connect(loginbtn, &QPushButton::clicked, this, &LoginDialog::onLogin);
 	connect(passEdit, &QLineEdit::returnPressed, this, &LoginDialog::onLogin);
