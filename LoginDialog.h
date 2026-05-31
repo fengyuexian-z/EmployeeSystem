@@ -12,6 +12,9 @@ class LoginDialog : public QDialog
 public:
     LoginDialog(QWidget* parent = nullptr);
 
+signals:
+    void loginsucceeded();
+    void loginfailed();
 private slots:
     void onLogin();
 
