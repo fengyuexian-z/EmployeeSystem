@@ -42,12 +42,6 @@ void ChangePasswordDialog::tochangpass() {
 	QString oldPass = oldPassEdit->text();
 	QString newPass = newPassEdit->text();
 	QString confirmPass = confirmPassEdit->text();
-	if (!PasswordManager::validateUser(oldPass)) {
-		QMessageBox::critical(this, "错误", "旧密码错误！");
-		oldPassEdit->clear();
-		oldPassEdit->setFocus();
-		return;
-	}
 	if (newPass.isEmpty()) {
 		QMessageBox::warning(this, "错误", "新密码不能为空！");
 		newPassEdit->clear();
@@ -62,7 +56,12 @@ void ChangePasswordDialog::tochangpass() {
 		newPassEdit->setFocus();
 		return;
 	}
-	PasswordManager::changePassword(newPass);
+	if (!PasswordManger::changePassword(oldPass, newPass)) {
+		QMessageBox::critical(this, "错误", "旧密码错误！");
+		oldPassEdit->clear();
+		oldPassEdit->setFocus();
+		return;
+	}	
 	QMessageBox::information(this, "成功", "密码修改成功！");
 	this->close();
 }

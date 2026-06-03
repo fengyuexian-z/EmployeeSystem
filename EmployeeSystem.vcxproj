@@ -98,7 +98,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="ChangePasswordDialog.h" />
+    <QtMoc Include="ChangePasswordDialog.h" />
     <ClInclude Include="Employee.h" />
     <ClInclude Include="EmployeeDialog.h" />
     <ClInclude Include="EmployeeManager.h" />
