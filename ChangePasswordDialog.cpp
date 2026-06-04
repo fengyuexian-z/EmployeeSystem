@@ -56,7 +56,7 @@ void ChangePasswordDialog::tochangpass() {
 		newPassEdit->setFocus();
 		return;
 	}
-	if (!PasswordManger::changePassword(oldPass, newPass)) {
+	if (!PasswordManager::changePassword(oldPass, newPass)) {
 		QMessageBox::critical(this, "错误", "旧密码错误！");
 		oldPassEdit->clear();
 		oldPassEdit->setFocus();

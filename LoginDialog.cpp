@@ -42,7 +42,7 @@ void LoginDialog::onLogin() {
 	QString username = userEdit->text();
 	QString password = passEdit->text();
 	//检验账密
-	if (PasswordManager::validateUser(username, password)) {
+	if (PasswordManager::validate(username, password)) {
 		msgLabel->setText("登录成功！");
 		emit loginsucceeded;
 	}
