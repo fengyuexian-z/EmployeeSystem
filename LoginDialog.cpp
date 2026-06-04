@@ -43,8 +43,8 @@ void LoginDialog::onLogin() {
 	QString password = passEdit->text();
 	//检验账密
 	if (PasswordManager::validate(username, password)) {
-		msgLabel->setText("登录成功！");
-		emit loginsucceeded;
+		msgLabel->setText(QString("欢迎您  %1").arg(username));
+		emit loginsucceeded();
 	}
 	else {
 		attempts++;	

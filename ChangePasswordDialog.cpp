@@ -62,6 +62,7 @@ void ChangePasswordDialog::tochangpass() {
 		oldPassEdit->setFocus();
 		return;
 	}	
-	QMessageBox::information(this, "成功", "密码修改成功！");
+	QMessageBox::information(this, "成功", "密码修改成功！\n请重新登录");
 	this->close();
+	emit passwordChanged();
 }

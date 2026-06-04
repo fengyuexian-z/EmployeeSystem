@@ -1,5 +1,4 @@
 #include "MainWindow.h"
-
 #include <QMenuBar>
 #include <QToolBar>
 #include <QAction>
@@ -35,3 +34,26 @@ MainWindow::~MainWindow() {
     saveData();
 }
 
+void MainWindow::setupLoginPage() {
+    loginDialog = new LoginDialog();
+    connect(loginDialog, &LoginDialog::loginsucceeded, this,&MainWindow::onLoginSucceeded);
+    connect(loginDialog, &LoginDialog::loginfailed, this, &MainWindow::onLoginFailed);
+    //垂直居中
+    QWidget* container = new QWidget();
+    QVBoxLayout* lay = new QVBoxLayout(container);
+    lay->addStretch();
+    lay->addWidget(loginDialog, 0, Qt::AlignCenter);
+    lay->addStretch();
+
+    stackedWidget->addWidget(container);
+}
+
+void MainWindow::onLoginSucceeded() {
+    loadData();
+    refreshTable();
+    switchToManagePage();
+}
+
+void MainWindow::onLoginFailed() {
+    close();
+}

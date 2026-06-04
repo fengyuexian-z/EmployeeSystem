@@ -6,7 +6,7 @@ class ChangePasswordDialog : public QDialog
 {
 	Q_OBJECT
 public:
-	ChangePasswordDialog(QWidget* parent = nullptr);
+	explicit ChangePasswordDialog(QWidget* parent = nullptr);
 signals:
 	void passwordChanged();
 private slots:

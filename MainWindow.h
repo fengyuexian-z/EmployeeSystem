@@ -19,7 +19,7 @@ public:
 
 private slots:
     void onLoginSucceeded();
-    void onLoginFailed(int remaining);
+    void onLoginFailed();
     void onAdd();
     void onEdit();
     void onDelete();

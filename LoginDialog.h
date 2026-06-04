@@ -10,7 +10,7 @@ class LoginDialog : public QDialog
 {
     Q_OBJECT
 public:
-    LoginDialog(QWidget* parent = nullptr);
+    explicit LoginDialog(QWidget* parent = nullptr);
 
 signals:
     void loginsucceeded();
