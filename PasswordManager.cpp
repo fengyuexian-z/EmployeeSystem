@@ -25,7 +25,7 @@ QString PasswordManager::decrypt(const QString& cipherText) {
     QByteArray result;
     int keylen = keyBytes.size();
     //循环异或解密
-    for (int i = 0; i < cipherText.size(); ++i) {
+    for (int i = 0; i < cipherBytes.size(); ++i) {
         char keyChar = keyBytes[i % keylen];
         result.append(cipherBytes[i] ^ keyChar);
     }
@@ -35,7 +35,8 @@ QString PasswordManager::decrypt(const QString& cipherText) {
 void PasswordManager::createDefaultAccount() {
     QFile file("password.dat");
     if (!file.open(QIODevice::WriteOnly)) {
-        qDebug()<<"密码文件初始化失败！"<< file.errorString();
+        qDebug() << "密码文件初始化失败！" << file.errorString();
+        return;
     }
     QDataStream out(&file);
     //写入初始账密
@@ -47,7 +48,7 @@ void PasswordManager::createDefaultAccount() {
 bool PasswordManager::validate(const QString& username, const QString& password) {
     QFile file("password.dat");
     if (!file.open(QIODevice::ReadOnly)) {
-        qDebug()<<"密码文件读取失败！"<< file.errorString();
+        qDebug() << "密码文件读取失败！" << file.errorString();
         return false;
     }
     QDataStream data(&file);

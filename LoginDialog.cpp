@@ -4,7 +4,7 @@
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QMessageBox>
 
-LoginDialog::LoginDialog(QWidget* parent) :QDialog(parent) ,attempts(0){
+LoginDialog::LoginDialog(QWidget* parent) :QDialog(parent), attempts(0) {
 	setWindowTitle("登录界面");
 	//基础组件
 	userEdit = new QLineEdit(this);
@@ -23,15 +23,10 @@ LoginDialog::LoginDialog(QWidget* parent) :QDialog(parent) ,attempts(0){
 	formlayout->addWidget(loginbtn, 2, 0, 1, 2, Qt::AlignCenter); // 按钮居中
 	formlayout->setColumnStretch(1, 1);  // 输入框列可拉伸
 
-	QHBoxLayout* msgLayout = new QHBoxLayout();
-	msgLayout->addStretch();
-	msgLayout->addWidget(msgLabel);
-	msgLayout->addStretch();
-
 	QVBoxLayout* outerLayout = new QVBoxLayout(this);
 	outerLayout->addStretch(1);
 	outerLayout->addLayout(formlayout, 2);
-	outerLayout->addLayout(msgLayout, 1);
+	outerLayout->addStretch(1);
 
 	//点击按钮或回车登录
 	connect(loginbtn, &QPushButton::clicked, this, &LoginDialog::onLogin);
@@ -43,11 +38,11 @@ void LoginDialog::onLogin() {
 	QString password = passEdit->text();
 	//检验账密
 	if (PasswordManager::validate(username, password)) {
-		msgLabel->setText(QString("欢迎您  %1").arg(username));
+		QMessageBox::about(this, "欢迎", QString("欢迎您，%1").arg(username));
 		emit loginsucceeded();
 	}
 	else {
-		attempts++;	
+		attempts++;
 		if (attempts >= 3) {
 			QMessageBox::critical(this, "登录失败", "错误次数已达到上限！");
 			emit loginfailed();
