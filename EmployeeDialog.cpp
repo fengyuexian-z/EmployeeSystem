@@ -49,17 +49,17 @@ void EmployeeDialog::setupUI() {
     bonusSpin->setRange(0, 999999);
     bonusSpin->setDecimals(2);
     bonusSpin->setSuffix(tr(" 元"));
-    ManagerLayout->addRow(tr("奖金:"), bonusSpin);
+    ManagerLayout->addRow(tr("管理津贴："), bonusSpin);
     stack->addWidget(ManagerPage);
 
     // 技术员页面
     QWidget* techPage = new QWidget();
     QFormLayout* techLayout = new QFormLayout(techPage);
     rateSpin = new QDoubleSpinBox(techPage);
-    rateSpin->setRange(0, 10);
-    rateSpin->setDecimals(2);
-    commRateSpin->setSingleStep(0.01);
-    techLayout->addRow(tr("提成比例"), rateSpin);
+    rateSpin->setRange(0, 1000);
+    rateSpin->setDecimals(0);
+    rateSpin->setSuffix(tr(" %"));
+    techLayout->addRow(tr("项目提成："), rateSpin);
     stack->addWidget(techPage);
 
     // 销售员页面
@@ -70,12 +70,11 @@ void EmployeeDialog::setupUI() {
     salesSpin->setDecimals(2);
     salesSpin->setSuffix(tr(" 元"));
     commRateSpin = new QDoubleSpinBox(salePage);
-    commRateSpin->setRange(0, 1);
-    commRateSpin->setDecimals(2);
-    commRateSpin->setSuffix(tr("%"));
-    commRateSpin->setSingleStep(0.01);
-    saleLayout->addRow(tr("销售额:"), salesSpin);
-    saleLayout->addRow(tr("提成比例:"), commRateSpin);
+    commRateSpin->setRange(0,1000);
+    commRateSpin->setDecimals(0);
+    commRateSpin->setSuffix(tr(" %"));
+    saleLayout->addRow(tr("销售额："), salesSpin);
+    saleLayout->addRow(tr("提成比例："), commRateSpin);
     stack->addWidget(salePage);
 
     mainLayout->addWidget(stack);
@@ -126,14 +125,14 @@ void EmployeeDialog::setEmployee(const Employee* e) {
     }
     case 2: { // Technician
         auto tech = dynamic_cast<const Technician*>(e);
-        if (tech) rateSpin->setValue(tech->projectRate);
+        if (tech) rateSpin->setValue(tech->projectRate*100);
         break;
     }
     case 3: { // Salesman
         auto sale = dynamic_cast<const Salesman*>(e);
         if (sale) {
             salesSpin->setValue(sale->sales);
-            commRateSpin->setValue(sale->commissionRate);
+            commRateSpin->setValue(sale->commissionRate*100);
         }
         break;
     }
@@ -172,9 +171,10 @@ Employee* EmployeeDialog::getEmployee()
     }
     case 2: { // Technician
         Technician* t = new Technician;
-        double rate = rateSpin->value();
+        double ratePercent = rateSpin->value();
+        double rate = ratePercent / 100.0;
         if (rate < 0 || rate > 10) {
-            QMessageBox::warning(this, tr("错误"), tr("项目费率必须在0~10之间"));
+            QMessageBox::warning(this, tr("错误"), tr("项目提成必须在 0% - 1000% 之间"));
             delete t;
             return nullptr;
         }
@@ -185,9 +185,10 @@ Employee* EmployeeDialog::getEmployee()
     case 3: { // Salesman
         Salesman* s = new Salesman;
         double sales = salesSpin->value();
-        double comm = commRateSpin->value();
+        double commPercent = commRateSpin->value();
+        double comm = commPercent / 100.0;
         if (comm < 0 || comm > 1) {
-            QMessageBox::warning(this, tr("错误"), tr("佣金率必须在0~100%之间"));
+            QMessageBox::warning(this, tr("错误"), tr("提成比例必须在 0% - 1000% 之间"));
             delete s;
             return nullptr;
         }

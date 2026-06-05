@@ -100,12 +100,13 @@
   <ItemGroup>
     <QtMoc Include="ChangePasswordDialog.h" />
     <ClInclude Include="Employee.h" />
-    <ClInclude Include="EmployeeDialog.h" />
+    <QtMoc Include="EmployeeDialog.h" />
     <ClInclude Include="EmployeeManager.h" />
     <QtMoc Include="LoginDialog.h" />
     <QtMoc Include="MainWindow.h" />
     <ClInclude Include="Manager.h" />
     <ClInclude Include="PasswordManager.h" />
+    <ClInclude Include="restart.h" />
     <ClInclude Include="Salesman.h" />
     <ClInclude Include="Technician.h" />
   </ItemGroup>
@@ -119,6 +120,7 @@
     <ClCompile Include="MainWindow.cpp" />
     <ClCompile Include="Manager.cpp" />
     <ClCompile Include="PasswordManager.cpp" />
+    <ClCompile Include="restart.cpp" />
     <ClCompile Include="Salesman.cpp" />
     <ClCompile Include="Technician.cpp" />
   </ItemGroup>

@@ -27,6 +27,7 @@ private slots:
     void onStatistics();
     void onChangePassword();
     void onTableDoubleClicked(int row, int col);
+    void AppRestart();
 
 private:
     void setupLoginPage();
@@ -35,6 +36,7 @@ private:
     void saveData();
     void loadData();
     void switchToManagePage();
+    double avg(int cnt, double sum);
 
     QStackedWidget* stackedWidget;
     LoginDialog* loginDialog;    

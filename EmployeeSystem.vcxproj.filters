@@ -41,7 +41,7 @@
     <ClInclude Include="PasswordManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="EmployeeDialog.h">
+    <ClInclude Include="restart.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -79,6 +79,9 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="restart.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="LoginDialog.h">
@@ -88,6 +91,9 @@
       <Filter>Header Files</Filter>
     </QtMoc>
     <QtMoc Include="MainWindow.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
+    <QtMoc Include="EmployeeDialog.h">
       <Filter>Header Files</Filter>
     </QtMoc>
   </ItemGroup>

@@ -82,8 +82,9 @@ void EmployeeManager::updateEmployee(int index, Employee* newData) {
 }
 
 Employee* EmployeeManager::employeeAt(int index) const {
-	if (index >= 0 && index < m_employees.size())
+	if (index >= 0 && index < m_employees.size()) {
 		return m_employees[index];
+	}
 	return nullptr;
 }
 
