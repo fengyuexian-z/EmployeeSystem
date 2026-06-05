@@ -11,7 +11,6 @@ LoginDialog::LoginDialog(QWidget* parent) :QDialog(parent), attempts(0) {
 	passEdit = new QLineEdit(this);
 	passEdit->setEchoMode(QLineEdit::Password);
 	QPushButton* loginbtn = new QPushButton("登录", this);
-	msgLabel = new QLabel(this);
 	QLabel* userlabel = new QLabel("用户名：", this);
 	QLabel* passlabel = new QLabel("密码：", this);
 
@@ -48,7 +47,7 @@ void LoginDialog::onLogin() {
 			emit loginfailed();
 		}
 		else {
-			msgLabel->setText(QString("登录失败！剩余尝试次数：%1").arg(3 - attempts));
+			QMessageBox::critical(this,"登录失败", QString("用户名或密码错误！剩余尝试次数：%1").arg(3 - attempts));
 			userEdit->clear();
 			passEdit->clear();
 			userEdit->setFocus();

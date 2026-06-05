@@ -21,7 +21,6 @@ private slots:
 private:
     QLineEdit* userEdit;
     QLineEdit* passEdit;
-    QLabel* msgLabel;
     int attempts;
 };
 

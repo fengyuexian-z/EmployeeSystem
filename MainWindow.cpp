@@ -57,3 +57,11 @@ void MainWindow::onLoginSucceeded() {
 void MainWindow::onLoginFailed() {
     close();
 }
+
+void MainWindow::switchToManagePage() {
+    stackedWidget->setCurrentIndex(1);
+}
+
+void MainWindow::setupManagePage() {
+
+}

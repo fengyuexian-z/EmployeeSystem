@@ -20,5 +20,5 @@ void EmployeeDialog::setupUI() {
 	genderEdit = new QLineEdit(this);
 	deptEdit = new QLineEdit(this);
 	
-
+	
 }
