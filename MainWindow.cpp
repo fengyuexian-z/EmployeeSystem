@@ -14,6 +14,9 @@
 
 MainWindow::MainWindow(QWidget* parent) :QMainWindow(parent) {
 	setWindowTitle("职工管理系统");
+    QScreen* screen = QGuiApplication::primaryScreen();
+    QRect screenGeometry = screen->availableGeometry();
+    resize(screenGeometry.width() * 0.7, screenGeometry.height() * 0.7);
 
     stackedWidget = new QStackedWidget(this);
     setCentralWidget(stackedWidget);
