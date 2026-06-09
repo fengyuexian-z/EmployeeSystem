@@ -14,6 +14,18 @@ LoginDialog::LoginDialog(QWidget* parent) :QDialog(parent), attempts(0) {
 	QLabel* userlabel = new QLabel("用户名：", this);
 	QLabel* passlabel = new QLabel("密码：", this);
 
+	// 设置字体大小
+	QFont labelFont; labelFont.setPointSize(12);
+	userlabel->setFont(labelFont);
+	passlabel->setFont(labelFont);
+	QFont editFont; editFont.setPointSize(14);
+	userEdit->setFont(editFont);
+	passEdit->setFont(editFont);
+
+	//设置按钮大小
+	loginbtn->setMinimumSize(100, 35);
+	loginbtn->setStyleSheet("font-size: 12pt; padding: 4px 8px;");
+
 	QGridLayout* formlayout = new QGridLayout();
 	formlayout->addWidget(userlabel, 0, 0);
 	formlayout->addWidget(userEdit, 0, 1);
@@ -21,6 +33,8 @@ LoginDialog::LoginDialog(QWidget* parent) :QDialog(parent), attempts(0) {
 	formlayout->addWidget(passEdit, 1, 1);
 	formlayout->addWidget(loginbtn, 2, 0, 1, 2, Qt::AlignCenter); // 按钮居中
 	formlayout->setColumnStretch(1, 1);  // 输入框列可拉伸
+
+	
 
 	QVBoxLayout* outerLayout = new QVBoxLayout(this);
 	outerLayout->addStretch(1);

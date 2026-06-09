@@ -17,7 +17,7 @@ double Employee::getBasicSalary() const { return basicSalary; }
 
 QString Employee::displayInfo() const {
     return QString("ID: %1, Name: %2, Gender: %3, Dept: %4, Basic: %5")
-        .arg(id).arg(name, gender, department).arg(basicSalary);
+        .arg(id).arg(name).arg(gender).arg(department).arg(basicSalary);
 }
 
 void Employee::writeToStream(QDataStream& out) const {

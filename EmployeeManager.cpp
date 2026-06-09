@@ -80,16 +80,17 @@ void EmployeeManager::removeEmployee(int index) {
 	}
 }
 bool EmployeeManager::updateEmployee(int index, Employee* newData) {
-	if (index < 0 || index >= m_employees.size()) {
+	if (!newData||index < 0 || index >= m_employees.size()) {
 		return false;
 	}
-	for (auto m : m_employees) {
-		if (newData->getId() == m->getId()) {
+	for (int i = 0; i < m_employees.size();i++) {
+		if (newData->getId() == m_employees[i]->getId()&&i!=index) {
 			return false;
 		}
 	}
-	delete m_employees[index];
+	Employee* old = m_employees[index];
 	m_employees[index] = newData;
+	delete old;
 	return true;
 }
 
