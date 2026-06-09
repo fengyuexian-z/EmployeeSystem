@@ -141,7 +141,9 @@ void MainWindow::onAdd() {
     if (dlg.exec() == QDialog::Accepted) {
         Employee* e = dlg.getEmployee();
         if (e) {
-            manager.addEmployee(e);
+            if (!manager.addEmployee(e)) {
+                QMessageBox::question(this, "警告", "id重复！");
+            }
             saveData();
             refreshTable();
         }
@@ -157,7 +159,9 @@ void MainWindow::onEdit() {
     if (dlg.exec() == QDialog::Accepted) {
         Employee* e = dlg.getEmployee();
         if (e) {
-            manager.updateEmployee(row, e);
+            if (!manager.updateEmployee(row, e)) {
+                QMessageBox::question(this, "警告", "id重复！");
+            }
             refreshTable();
             saveData();
         }

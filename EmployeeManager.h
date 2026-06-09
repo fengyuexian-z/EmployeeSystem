@@ -14,9 +14,9 @@ public:
     bool loadFromFile(const QString& filename);
     bool saveToFile(const QString& filename) const;
 
-    void addEmployee(Employee* e);
+    bool addEmployee(Employee* e);
     void removeEmployee(int index);
-    void updateEmployee(int index, Employee* newData);
+    bool updateEmployee(int index, Employee* newData);
     Employee* employeeAt(int index) const;
     int count() const;
     void clear();

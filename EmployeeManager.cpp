@@ -64,9 +64,14 @@ bool EmployeeManager::saveToFile(const QString& filename) const{
 	file.close();
 	return true;
 }
-
-void EmployeeManager::addEmployee(Employee* e) {
+bool EmployeeManager::addEmployee(Employee* e) {
+	for (auto m : m_employees) {
+		if (e->getId() == m->getId()) {
+			return false;
+		}
+	}
 	m_employees.append(e);
+	return true;
 }
 void EmployeeManager::removeEmployee(int index) {
 	if (index >= 0 && index < m_employees.size()) {
@@ -74,11 +79,18 @@ void EmployeeManager::removeEmployee(int index) {
 		m_employees.removeAt(index);
 	}
 }
-void EmployeeManager::updateEmployee(int index, Employee* newData) {
-	if (index >= 0 && index < m_employees.size()) {
-		delete m_employees[index];
-		m_employees[index] = newData;
+bool EmployeeManager::updateEmployee(int index, Employee* newData) {
+	if (index < 0 || index >= m_employees.size()) {
+		return false;
 	}
+	for (auto m : m_employees) {
+		if (newData->getId() == m->getId()) {
+			return false;
+		}
+	}
+	delete m_employees[index];
+	m_employees[index] = newData;
+	return true;
 }
 
 Employee* EmployeeManager::employeeAt(int index) const {
